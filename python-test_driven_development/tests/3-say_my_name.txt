@@ -14,12 +14,16 @@ My name is Bob
 ---------------------------------
 Test if first_name is not a string
 >>> say_my_name(12, "White")
-first_name must be a string
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
 
 ---------------------------------
 Test if last_name is not a string
 >>> say_my_name("Walter", 12)
-last_name must be a string
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
 
 ---------------------------------
 Test if nothing is passed
