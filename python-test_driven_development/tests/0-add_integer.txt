@@ -2,15 +2,15 @@ Test cases for add_integer function
 
 >>> add_integer = __import__('0-add_integer').add_integer
 
-#Adding positive to positive
+Adding positive to positive
 >>> add_integer(1, 2)
 3
 
-#Adding positive to negative
+Adding positive to negative
 >>> add_integer(100, -2)
 98
 
-#Adding only one number
+Adding only one number
 >>> add_integer(2)
 100
 
