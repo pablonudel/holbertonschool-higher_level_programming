@@ -1,0 +1,54 @@
+Test cases for text_indentation function
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test string with delimiters
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? Non autem hoc: igitur ne illud quidem""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+Non autem hoc:
+<BLANKLINE>
+igitur ne illud quidem
+
+-------------------------------
+Test if <text> is None
+>>> text_indentation(None)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+-------------------------------
+Test if <text> is an integer
+>>> text_indentation(13)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+-------------------------------
+Test if <text> is a character
+>>> text_indentation('H')
+H
+
+-------------------------------
+Test if <text> is a character .
+>>> text_indentation('.')
+.
+<BLANKLINE>
+
+-------------------------------
+Test if <text> is a character ?
+>>> text_indentation('?')
+?
+<BLANKLINE>
+
+-------------------------------
+Test if <text> is a character ?
+>>> text_indentation(':')
+:
+<BLANKLINE>
+
+-------------------------------
