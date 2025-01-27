@@ -12,8 +12,9 @@ class Square:
     Property position setter to set the position of the square
     Print method to print the square
     """
-    __size = None
-    __position = None
+    def __init__(self, size=0, position=(0, 0)):
+        self.__size = size
+        self.__position = position
 
     def area(self):
         return self.__size ** 2
@@ -52,7 +53,3 @@ class Square:
                 print()
             for i in range(self.__size):
                 print(" " * self.__position[0] + "#" * self.__size)
-
-    def __init__(self, size=0, position=(0, 0)):
-        self.__size = size
-        self.__position = position
