@@ -1,5 +1,9 @@
 #!/usr/bin/python3
+""" This module creates a Square Class """
+
+
 class Square:
+    """ Square class with size validation and area method """
     __size = None
 
     def area(self):
