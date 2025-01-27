@@ -1,5 +1,15 @@
 #!/usr/bin/python3
+""" This module creates a Square Class """
+
+
 class Square:
+    """
+    Square class with size validation
+    Area method to calculate the area of the square
+    Property size to retrieve the size of the square
+    Size setter to set the size of the square
+    Print method to print the square
+    """
     __size = None
 
     def area(self):
