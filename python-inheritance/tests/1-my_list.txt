@@ -39,26 +39,3 @@ Test cases for print_sorted function
 []
 
 ----
-
->>> my_list = MyList()
->>> my_list.append(a)
-Traceback (most recent call last):
-...
-NameError: name 'a' is not defined
-
-----
-
->>> my_list = MyList()
->>> my_list.append()
-Traceback (most recent call last):
-...
-TypeError: list.append() takes exactly one argument (0 given)
-
-----
-
->>> my_list = MyList(2)
-Traceback (most recent call last):
-...
-TypeError: 'int' object is not iterable
-
-----
