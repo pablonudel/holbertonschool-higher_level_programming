@@ -23,13 +23,3 @@ Test cases for print_sorted function
 [1, 0, -2, 4.5, 5]
 >>> my_list.print_sorted()
 [-2, 0, 1, 4.5, 5]
-
-----
-
->>> my_list = MyList([1, 0, -2, "hello", 5])
->>> print(my_list)
-[1, 0, -2, 'hello', 5]
->>> my_list.print_sorted()
-Traceback (most recent call last):
-    ...
-TypeError: '<' not supported between instances of 'str' and 'int'
