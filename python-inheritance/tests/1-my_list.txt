@@ -44,7 +44,7 @@ True
 
 >>> my_list = MyList(None)
 Traceback (most recent call last):
-    ...
+...
 TypeError: 'NoneType' object is not iterable
 
 ----
@@ -59,16 +59,13 @@ TypeError: '<' not supported between instances of 'str' and 'int'
 
 >>> my_list = MyList([1, 2], [3, 4])
 Traceback (most recent call last):
-    ...
+...
 TypeError: list expected at most 1 argument, got 2
 
 ----
 
 >>> other_list.print_sorted()
 Traceback (most recent call last):
-    ...
+...
 NameError: name 'other_list' is not defined
 
-----
-
->>> my_list = MyList()
