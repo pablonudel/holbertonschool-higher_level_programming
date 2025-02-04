@@ -50,7 +50,5 @@ class Rectangle(Shape):
 
 def shape_info(shape):
     """ Shape info function """
-    if not isinstance(shape, Shape):
-        raise TypeError("Provided object is not a Shape instance")
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
