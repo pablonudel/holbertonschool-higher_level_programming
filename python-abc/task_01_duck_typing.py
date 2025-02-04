@@ -9,12 +9,12 @@ class Shape(ABC):
     @abstractmethod
     def area(self):
         """ Area method """
-        pass
+        return 5
 
     @abstractmethod
     def Perimeter(self):
         """ Perimeter method """
-        pass
+        return 5
 
 
 class Circle(Shape):
