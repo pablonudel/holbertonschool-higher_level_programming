@@ -21,11 +21,15 @@ class Circle(Shape):
     """ Circle class """
     def __init__(self, radius):
         """ Circle constructor """
+        if not isinstance(radius, (int, float)):
+            raise TypeError("Radius must be a number")
+        if radius <= 0:
+            raise ValueError("Radius must be a positive number")
         self.radius = radius
 
     def area(self):
         """ Area method """
-        return math.pi * self.radius ** 2
+        return math.pi * (self.radius ** 2)
 
     def perimeter(self):
         """ Perimeter method """
@@ -36,6 +40,10 @@ class Rectangle(Shape):
     """ Rectangle class """
     def __init__(self, width, height):
         """ Rectangle constructor """
+        if not all(isinstance(i, (int, float)) for i in [width, height]):
+            raise TypeError("Width and height must be numbers")
+        if width <= 0 or height <= 0:
+            raise ValueError("Width and height must be positive numbers")
         self.width = width
         self.height = height
 
@@ -50,7 +58,5 @@ class Rectangle(Shape):
 
 def shape_info(shape):
     """ Shape info function """
-    area = shape.area()
-    perimeter = shape.perimeter()
-    print("Area: {}".format(area))
-    print("Perimeter: {}".format(perimeter))
+    print("Area: {}".format(shape.area()))
+    print("Perimeter: {}".format(shape.perimeter()))
