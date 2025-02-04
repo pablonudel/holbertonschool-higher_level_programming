@@ -68,3 +68,7 @@ TypeError: list expected at most 1 argument, got 2
 Traceback (most recent call last):
     ...
 NameError: name 'other_list' is not defined
+
+----
+
+>>> my_list = MyList()
