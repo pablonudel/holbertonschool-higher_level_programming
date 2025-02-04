@@ -1,0 +1,88 @@
+Test cases for BaseGeometry class
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+>>> bg = BaseGeometry()
+
+For arear(self) method:
+-----------------------
+
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+
+For integer_validator(self, name, value) method:
+-----------------------------------------------
+
+>>> bg.integer_validator("name", 12)
+
+----
+
+>>> bg.integer_validator("name", "Pablo")
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", 0)
+Traceback (most recent call last):
+...
+ValueError: name must be greater than 0
+
+----
+
+>>> bg.integer_validator("name", -1)
+Traceback (most recent call last):
+...
+ValueError: name must be greater than 0
+
+----
+
+>>> bg.integer_validator("name", 1.2)
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", [1, 2, 3])
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", {"name": 1})
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", (1, 2, 3))
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", {1, 2, 3})
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", True)
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+----
+
+>>> bg.integer_validator("name", None)
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
