@@ -86,3 +86,14 @@ TypeError: name must be an integer
 Traceback (most recent call last):
 ...
 TypeError: name must be an integer
+
+----
+
+>>> print(BaseGeometry.__doc__)
+BaseGeometry class
+
+>>> print(BaseGeometry.area.__doc__)
+Method that raises an Exception
+
+>>> print(BaseGeometry.integer_validator.__doc__)
+Method that validates value
