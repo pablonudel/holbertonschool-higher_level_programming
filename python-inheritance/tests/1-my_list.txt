@@ -35,5 +35,29 @@ Test cases for print_sorted function
 ----
 
 >>> my_list = MyList()
+>>> print(my_list)
+[]
 >>> my_list.print_sorted()
 []
+
+----
+
+>>> my_list = MyList(None)
+Traceback (most recent call last):
+    ...
+TypeError: 'NoneType' object is not iterable
+
+----
+
+>>> my_list = MyList([1, 2, "School"])
+>>> my_list.print_sorted()
+Traceback (most recent call last):
+...
+TypeError: '<' not supported between instances of 'str' and 'int'
+
+----
+
+>>> my_list = MyList([1, 2], [3, 4])
+Traceback (most recent call last):
+    ...
+TypeError: list expected at most 1 argument, got 2
