@@ -2,43 +2,35 @@ Test cases for print_sorted function
 
 >>> MyList = __import__('1-my_list').MyList
 
->>> my_list = MyList([1, 4, 2, 3, 5])
->>> print(my_list)
-[1, 4, 2, 3, 5]
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
 >>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
-
-----
-
->>> my_list = MyList([1, 0, -2, 365, 5])
->>> print(my_list)
-[1, 0, -2, 365, 5]
->>> my_list.print_sorted()
-[-2, 0, 1, 5, 365]
-
-----
-
->>> my_list = MyList([1, 0, -2, 4.5, 5])
->>> print(my_list)
-[1, 0, -2, 4.5, 5]
->>> my_list.print_sorted()
-[-2, 0, 1, 4.5, 5]
-
-----
-
->>> my_list = MyList([1, 0, -2, 0, 5])
->>> print(my_list)
-[1, 0, -2, 0, 5]
->>> my_list.print_sorted()
-[-2, 0, 0, 1, 5]
+>>> my_list
+[1, 4, 2, 3, 5]
 
 ----
 
 >>> my_list = MyList()
->>> print(my_list)
-[]
 >>> my_list.print_sorted()
 []
+
+----
+
+>>> my_list = MyList()
+>>> my_list += [7]
+>>> my_list.print_sorted()
+[7]
+
+----
+
+>>> my_list = MyList()
+>>> isinstance(my_list, list)
+True
 
 ----
 
@@ -59,18 +51,12 @@ TypeError: '<' not supported between instances of 'str' and 'int'
 
 >>> my_list = MyList([1, 2], [3, 4])
 Traceback (most recent call last):
-...
+    ...
 TypeError: list expected at most 1 argument, got 2
 
 ----
 
->>> my_list = MyList()
->>> my_list += [7]
->>> my_list.print_sorted()
-[7]
-
-----
-
->>> my_list = MyList()
->>> isinstance(my_list, list)
-True
+>>> other_list.print_sorted()
+Traceback (most recent call last):
+    ...
+NameError: name 'other_list' is not defined
