@@ -2,8 +2,7 @@
 """ Module for read_file method """
 
 
-def read_file(filename=""):
+def read_file(filename="my_file_0.txt"):
     """ function that reads a text file (UTF8) and prints it to stdout """
-    if filename != "":
-        with open(filename, encoding="utf-8") as f:
-                print(f.read(), end='')
+    with open(filename, encoding="utf-8") as f:
+        print(f.read(), end='')
