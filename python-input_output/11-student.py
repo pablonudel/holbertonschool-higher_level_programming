@@ -13,7 +13,8 @@ class Student:
     def to_json(self, attrs=None):
         """retrieves a dictionary representation of a Student instance"""
         if attrs is None:
-            return {key: self.__dict__[key] for key in sorted(self.__dict__)}
+            return ({key: self.__dict__[key] for key
+                     in sorted(self.__dict__, reverse=True)})
         new_dict = {}
         for key in sorted(attrs):
             if key in self.__dict__:
