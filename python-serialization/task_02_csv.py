@@ -13,6 +13,6 @@ def convert_csv_to_json(csv_file):
             obj = [row for row in data]
         with open("data.json", 'w+', encoding="utf-8") as f:
             json.dump(obj, f, indent=4)
-    except (FileNotFoundError, csv.Error, IOError) as e:
+    except (FileNotFoundError, csv.Error, EOFError, IOError) as e:
         print("Error: {}".format(e))
         return False
