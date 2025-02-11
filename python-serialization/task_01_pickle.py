@@ -31,7 +31,10 @@ class CustomObject:
         from the provided filename"""
         try:
             with open(filename, 'rb') as f:
-                return pickle.load(f)
-        except (FileNotFoundError, pickle.PickleError) as e:
+                obj = pickle.load(f)
+                if not isinstance(obj, cls):
+                    raise TypeError("Object is not of type CustomObject")
+                return obj
+        except (FileNotFoundError, pickle.UnpicklingError) as e:
             print("Deserialization error: {}".format(e))
             return None
