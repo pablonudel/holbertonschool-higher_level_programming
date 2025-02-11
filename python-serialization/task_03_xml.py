@@ -7,7 +7,6 @@ from xml.dom import minidom
 def serialize_to_xml(dictionary, filename):
     """serialize the dictionary into XML and save it to the given filename"""
     root = ET.Element('data')
-
     for key, value in dictionary.items():
         child = ET.SubElement(root, key)
         child.text = str(value)
@@ -26,7 +25,6 @@ def deserialize_from_xml(filename):
         tree = ET.parse(filename)
         root = tree.getroot()
         dictionary = {child.tag: child.text for child in root}
-
         return dictionary
     except (FileNotFoundError, ET.ParseError) as e:
         print("Error: {}".format(e))
