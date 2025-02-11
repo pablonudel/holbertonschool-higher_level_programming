@@ -1,4 +1,5 @@
 *main.py
 *.json
 *.pkl
+*.csv
 __pycache__/
