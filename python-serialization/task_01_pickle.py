@@ -35,6 +35,6 @@ class CustomObject:
                 if not isinstance(obj, cls):
                     raise TypeError("Object is not of type CustomObject")
                 return obj
-        except (FileNotFoundError, pickle.UnpicklingError) as e:
+        except (FileNotFoundError, pickle.UnpicklingError, EOFError) as e:
             print("Deserialization error: {}".format(e))
             return None
