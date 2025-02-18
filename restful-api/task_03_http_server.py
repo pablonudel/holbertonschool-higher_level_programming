@@ -6,37 +6,35 @@ import json
 
 class RequestHandler(BaseHTTPRequestHandler):
     """a simple HTTP server"""
+    def send_text(self, data, status=200):
+        """Helper function to send plain text responses"""
+        self.send_response(status)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(data.encode("utf-8"))
+
+    def send_json(self, data, status=200):
+        """Helper function to send JSON responses"""
+        self.send_response(status)
+        self.send_header("Content-type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps(data).encode("utf-8"))
+
     def do_GET(self):
         """method to handle GET requests"""
         if self.path == '/':
-            self.send_response(200)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
-            data = "Hello, this is a simple API!"
-            self.wfile.write(data.encode('utf-8'))
+            self.send_text("Hello, this is a simple API!")
         elif self.path == '/data':
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            data = {"name": "John", "age": 30, "city": "New York"}
-            self.wfile.write(json.dumps(data).encode('utf-8'))
+            self.send_json({"name": "John", "age": 30, "city": "New York"})
         elif self.path == '/status':
-            self.send_response(200)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
-            self.wfile.write("OK".encode('utf-8'))
+            self.send_text("OK")
         elif self.path == '/info':
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            data = {"version": "1.0",
-                    "description": "A simple API built with http.server"}
-            self.wfile.write(json.dumps(data).encode('utf-8'))
+            self.send_json({
+                "version": "1.0",
+                "description": "A simple API built with http.server"
+                })
         else:
-            self.send_response(404)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
-            self.wfile.write("Endpoint not found".encode('utf-8'))
+            self.send_text("Endpoint not found", 404)
 
 
 def run_server(host="localhost", port=8000):
