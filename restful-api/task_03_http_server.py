@@ -38,16 +38,19 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
 
-hostName = 'localhost'
-serverPort = 8000
+def run_server(host="localhost", port=8000):
+    """Starts the HTTP server"""
+    web_server = HTTPServer((host, port), RequestHandler)
+    print("Server started at http://{}:{}".format(host, port))
 
-webServer = HTTPServer((hostName, serverPort), RequestHandler)
-print("Server started at http://{}:{}".format(hostName, serverPort))
-try:
-    webServer.serve_forever()
-except KeyboardInterrupt:
-    pass
+    try:
+        web_server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        web_server.server_close()
+        print("\nServer stopped")
 
-webServer.server_close()
-print()
-print("Server stopped")
+
+if __name__ == "__main__":
+    run_server()
