@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Module for RequestHandler class"""
-from http.server import *
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
 
@@ -33,7 +33,10 @@ class RequestHandler(BaseHTTPRequestHandler):
                     "description": "A simple API built with http.server"}
             self.wfile.write(json.dumps(data).encode('utf-8'))
         else:
-            self.send_error(404, "Endpoint not found")
+            self.send_response(404)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write("Endpoint not found".encode('utf-8'))
 
 
 def run_server(host="localhost", port=8000):
