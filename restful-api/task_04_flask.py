@@ -30,35 +30,38 @@ def home():
 @app.route('/data')
 def list_users():
     """Return list of users in data path"""
-    return jsonify([user for user in users])
+    res = jsonify([user for user in users])
+    return res, 200, {'Content-Type': 'text/html'}
 
 
 @app.route('/status')
 def send_status():
     """Return a str in status path"""
-    return "OK"
+    return "OK", 200, {'Content-Type': 'text/html'}
 
 
 @app.route('/users/<username>')
 def get_user(username):
     """Return a user data in users dynamic path"""
     if username in users:
-        return jsonify(users[username])
+        res = jsonify(users[username])
+        return res, 200
     else:
-        return jsonify({"error": "User not found"})
+        res = jsonify({"error": "User not found"})
+        return res, 404
 
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
     """Return a user in users dict"""
     data = request.get_json()
-    if "username" in data.keys():
-        users[data["username"]] = data
-        response = jsonify({"message": "User added", "user": data})
-        return response, 201, {'Content-Type': 'application/json'}
+    if not data or "username" not in data:
+        res = jsonify({"error": "Username is required"})
+        return res, 400
     else:
-        response = jsonify({"error": "Username is required"})
-        return response, 400, {'Content-Type': 'application/json'}
+        users[data["username"]] = data
+        res = jsonify({"message": "User added", "user": data})
+        return res, 201
 
 
 if __name__ == "__main__":
