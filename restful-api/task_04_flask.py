@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Module for handling routes with Flask to respond to different endpoints"""
-from flask import Flask, request, Response, jsonify
-import json
+from flask import Flask, request, jsonify
 
 
 app = Flask(__name__)
@@ -30,14 +29,13 @@ def home():
 @app.route('/data')
 def list_users():
     """Return list of users in data path"""
-    res = jsonify([user for user in users])
-    return res, 200, {'Content-Type': 'text/html'}
+    return jsonify(list(users.values()))
 
 
 @app.route('/status')
 def send_status():
     """Return a str in status path"""
-    return "OK", 200, {'Content-Type': 'text/html'}
+    return "OK"
 
 
 @app.route('/users/<username>')
@@ -45,10 +43,8 @@ def get_user(username):
     """Return a user data in users dynamic path"""
     if username in users:
         res = jsonify(users[username])
-        return res, 200
-    else:
-        res = jsonify({"error": "User not found"})
-        return res, 404
+        return res
+    return jsonify({"error": "User not found"}), 404
 
 
 @app.route('/add_user', methods=['POST'])
@@ -58,10 +54,9 @@ def add_user():
     if not data or "username" not in data:
         res = jsonify({"error": "Username is required"})
         return res, 400
-    else:
-        users[data["username"]] = data
-        res = jsonify({"message": "User added", "user": data})
-        return res, 201
+    users[data["username"]] = data
+    res = jsonify({"message": "User added", "user": data})
+    return res, 201
 
 
 if __name__ == "__main__":
