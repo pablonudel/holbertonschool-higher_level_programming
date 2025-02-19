@@ -29,7 +29,7 @@ def home():
 @app.route('/data')
 def list_users():
     """Return list of users in data path"""
-    return [user for user in users]
+    return jsonify(list(users.keys()))
 
 
 @app.route('/status')
@@ -42,8 +42,7 @@ def send_status():
 def get_user(username):
     """Return a user data in users dynamic path"""
     if username in users:
-        res = jsonify(users[username])
-        return res
+        return jsonify(users[username])
     return jsonify({"error": "User not found"}), 404
 
 
@@ -52,10 +51,9 @@ def add_user():
     """Return a user in users dict"""
     data = request.get_json()
     if not data or "username" not in data:
-        res = jsonify({"error": "Username is required"})
-        return res, 400
+        return jsonify({"error": "Username is required"}), 400
     users[data["username"]] = data
-    res = jsonify({"message": "User added", "user": data})
+    res = jsonify({"message": "User added", "user": users[data["username"]]})
     return res, 201
 
 
