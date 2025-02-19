@@ -29,7 +29,7 @@ def home():
 @app.route('/data')
 def list_users():
     """Return list of users in data path"""
-    return jsonify(list(users.values()))
+    return [user for user in users]
 
 
 @app.route('/status')
