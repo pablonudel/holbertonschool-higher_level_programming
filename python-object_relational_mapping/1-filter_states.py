@@ -32,8 +32,9 @@ def query_states(mysql_username, mysql_password, database):
 if __name__ == "__main__":
     """Main execution method"""
     if len(sys.argv) != 4:
-        print(f"Usage: {format(sys.argv[0])} \
-<mysql_username> <mysql_password> <database_name>")
+        print(
+            "Usage: {} <mysql_username> <mysql_password> <database_name>"
+            .format(format(sys.argv[0])))
         sys.exit(1)
 
     mysql_username = sys.argv[1]
