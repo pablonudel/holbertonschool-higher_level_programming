@@ -15,8 +15,9 @@ def query_states(mysql_username, mysql_password, database, state):
                                db=database,
                                charset="utf8")
         cur = conn.cursor()
+
         cur.execute("SELECT * FROM states \
-            WHERE name = '" + state + "' ORDER BY id ASC")
+            WHERE name = '{}' ORDER BY id ASC".format(state))
         query_rows = cur.fetchall()
         for row in query_rows:
             print(row)
