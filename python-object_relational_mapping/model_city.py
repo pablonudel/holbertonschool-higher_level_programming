@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Model for the City class"""
-from sqlalchemy import Column, Integer, String, create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from model_state import Base
 
