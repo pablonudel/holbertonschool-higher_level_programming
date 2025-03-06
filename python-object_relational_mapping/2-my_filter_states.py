@@ -15,7 +15,9 @@ if __name__ == "__main__":
     state = sys.argv[4]
     cur.execute("SELECT * FROM states \
         WHERE name = '{}' ORDER BY id ASC".format(state))
-    row = cur.fetchall()
-    print(row[0])
+    query_rows = cur.fetchall()
+    for row in query_rows:
+        if row[1] == state:
+            print(row)
     cur.close()
     conn.close()
