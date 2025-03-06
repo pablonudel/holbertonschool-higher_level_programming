@@ -17,7 +17,6 @@ if __name__ == "__main__":
         WHERE name = '{}' ORDER BY id ASC".format(state))
     query_rows = cur.fetchall()
     for row in query_rows:
-        if row[1] == state:
-            print(row)
+        print(row)
     cur.close()
     conn.close()
