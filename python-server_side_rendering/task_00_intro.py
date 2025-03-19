@@ -27,11 +27,11 @@ def generate_invitations(template, attendees):
 
     for x, item in enumerate(attendees, start=1):
         new_template = template
-        for key in item.items():
+        for key in item:
             value = item.get(key, "N/A")
             if value is None:
                 value = "N/A"
-            new_template = new_template.replace('{' + key + '}', str(value))
+            new_template = new_template.replace('{' + key + '}', value)
         filename = 'output_{}.txt'.format(x)
         if os.path.exists(filename):
             print("file '{}' already exists".format(filename))
