@@ -28,7 +28,7 @@ def generate_invitations(template, attendees):
 
     for x, item in enumerate(attendees, start=1):
         new_template = template
-        for key in item:
+        for key in ["name", "event_title", "event_date", "event_location"]:
             value = item.get(key, "N/A")
             if value is None:
                 value = "N/A"
