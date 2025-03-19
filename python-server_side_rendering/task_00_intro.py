@@ -1,41 +1,47 @@
-import os
-"""Module for generate_invitations method"""
+#!/usr/bin/python3
 
+import os
 
 def generate_invitations(template, attendees):
-    """generates personalized invitation files from a template
-    with placeholders and a list of objects."""
 
-    try:
+    try: 
         if not isinstance(template, str):
-            raise TypeError("Template is not a string")
-        if not isinstance(attendees, list) or not all(isinstance(item, dict)
-                                                      for item in attendees):
-            raise TypeError("Attendees is not a list of dictionaries")
+            raise TypeError("Template must be a string")
+        
+        if not isinstance(attendees, list) or not all(isinstance(attendee, dict) for attendee in attendees):
+            raise TypeError("Attendees must be a list of dictionaries")
+        
     except TypeError as e:
-        print("TypeError: {}".format(e))
+        print(f'Error: {e}')
         return
-
+    
     try:
         if not template.strip():
             raise ValueError("Template is empty, no output files generated.")
+        
         if not attendees:
             raise ValueError("No data provided, no output files generated.")
+        
     except ValueError as e:
-        print("ValueError: {}".format(e))
+        print(f'Error: {e}')
         return
-
-    for x, item in enumerate(attendees, start=1):
-        new_template = template
-        for key in item:
-            value = item.get(key, "N/A")
+    
+    for i, attendee in enumerate(attendees, start=1):
+        output_content = template
+        for key in ["name", "event_title", "event_date", "event_location"]:
+            placeholder = "{" + key + "}"
+            value = attendee.get(key, "N/A")
             if value is None:
                 value = "N/A"
-            new_template = new_template.replace('{' + key + '}', value)
-        filename = 'output_{}.txt'.format(x)
-        if os.path.exists(filename):
-            print("file '{}' already exists".format(filename))
+            output_content = output_content.replace(placeholder, value)
+        output_filename = f"output_{i}.txt"
+
+        if os.path.exists(output_filename):
+            print(
+                f"Warning: {output_filename}\
+                already exists. Skipping file creation."
+                  )
             continue
 
-        with open(filename, 'w') as file:
-            file.write(new_template)
+        with open(output_filename, 'w') as output_file:
+            output_file.write(output_content)
