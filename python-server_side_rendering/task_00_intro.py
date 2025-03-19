@@ -1,39 +1,41 @@
 import os
 """Module for generate_invitations method"""
 
+
 def generate_invitations(template, attendees):
-    """generates personalized invitation files from a template 
+    """generates personalized invitation files from a template
     with placeholders and a list of objects."""
-    if not isinstance(template, str):
-        print("Template is not a string")
-        return False
-    if not isinstance(attendees, list) or not all(isinstance(item, dict) 
-                                                  for item in attendees):
-        print("Attendees is not a list of dicts")
-        return False
-    if template == "":
-        print("Template is empty, no output files generated.")
-        return False
-    if attendees == []:
-        print("No data provided, no output files generated.")
-        return False
-        
+
+    try:
+        if not isinstance(template, str):
+            raise TypeError("Template is not a string")
+        if not isinstance(attendees, list) or not all(isinstance(item, dict)
+                                                      for item in attendees):
+            raise TypeError("Attendees is not a list of dicts")
+    except TypeError as e:
+        print("TypeError: {}".format(e))
+        return
+
+    try:
+        if template == "":
+            raise ValueError("Template is empty, no output files generated.")
+        if attendees == []:
+            raise ValueError("No data provided, no output files generated.")
+    except ValueError as e:
+        print("ValueError: {}".format(e))
+        return
+
     x = 1
-    for item in attendees:
+    for x, item in enumerate(attendees, start=1):
         new_template = template
         for key, value in item.items():
-            if not value:
-                new_template = new_template.replace('{' + key + '}', 
-                                                    '{}: N/A'.format(key))
+            if value is None:
+                value = "N/A"
             new_template = new_template.replace('{' + key + '}', str(value))
         filename = 'output_{}.txt'.format(x)
-        try:
-            if os.path.exists(filename):
-                print("file '{}' already exists".format(filename))
-            else:
-                with open('output_{}.txt'.format(x), 'w') as file:
-                    file.write(new_template)
-        except IOError as e:
-            print("Error writing to file '{}': {}".format(filename, e))
-        x = x + 1
-    return True
+        if os.path.exists(filename):
+            print("file '{}' already exists".format(filename))
+            continue
+
+        with open('output_{}.txt'.format(x), 'w') as file:
+            file.write(new_template)
