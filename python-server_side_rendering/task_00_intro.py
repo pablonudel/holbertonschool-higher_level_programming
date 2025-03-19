@@ -11,7 +11,7 @@ def generate_invitations(template, attendees):
             raise TypeError("Template is not a string")
         if not isinstance(attendees, list) or not all(isinstance(item, dict)
                                                       for item in attendees):
-            raise TypeError("Attendees is not a list of dicts")
+            raise TypeError("Attendees is not a list of dictionaries")
     except TypeError as e:
         print("TypeError: {}".format(e))
         return
@@ -30,12 +30,12 @@ def generate_invitations(template, attendees):
         new_template = template
         for key, value in item.items():
             if value is None:
-                value = "N/A"
+                value = "{} N/A".format(key)
             new_template = new_template.replace('{' + key + '}', str(value))
         filename = 'output_{}.txt'.format(x)
         if os.path.exists(filename):
             print("file '{}' already exists".format(filename))
             continue
 
-        with open('output_{}.txt'.format(x), 'w') as file:
+        with open(filename, 'w') as file:
             file.write(new_template)
