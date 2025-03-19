@@ -17,20 +17,19 @@ def generate_invitations(template, attendees):
         return
 
     try:
-        if template == "":
+        if not template.strip():
             raise ValueError("Template is empty, no output files generated.")
-        if attendees == []:
+        if not attendees:
             raise ValueError("No data provided, no output files generated.")
     except ValueError as e:
         print("ValueError: {}".format(e))
         return
 
-    x = 1
     for x, item in enumerate(attendees, start=1):
         new_template = template
         for key, value in item.items():
             if value is None:
-                value = "{} N/A".format(key)
+                value = "{}:N/A".format(key)
             new_template = new_template.replace('{' + key + '}', str(value))
         filename = 'output_{}.txt'.format(x)
         if os.path.exists(filename):
