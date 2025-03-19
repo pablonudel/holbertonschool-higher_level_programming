@@ -29,7 +29,7 @@ def generate_invitations(template, attendees):
         new_template = template
         for key, value in item.items():
             if value is None:
-                value = "{}:N/A".format(key)
+                value = '"{}:N/A"'.format(key)
             new_template = new_template.replace('{' + key + '}', str(value))
         filename = 'output_{}.txt'.format(x)
         if os.path.exists(filename):
