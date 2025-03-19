@@ -29,9 +29,10 @@ def generate_invitations(template, attendees):
         filename = 'output_{}.txt'.format(x)
         try:
             if os.path.exists(filename):
-                print("Overwritting file '{}'".format(filename))
-            with open('output_{}.txt'.format(x), 'w') as file:
-                file.write(new_template)
+                print("file '{}' already exists".format(filename))
+            else:
+                with open('output_{}.txt'.format(x), 'w') as file:
+                    file.write(new_template)
         except IOError as e:
             print("Error writing to file '{}': {}".format(filename, e))
         x = x + 1
