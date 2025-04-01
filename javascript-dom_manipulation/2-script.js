@@ -1,5 +1,5 @@
-const red_header = document.getElementById("red_header");
-red_header.addEventListener('click', function() {
+const redHeader = document.getElementById("red_header");
+redHeader.addEventListener('click', function() {
     const header = document.querySelector('header');
     header.classList.add('red');
 })
